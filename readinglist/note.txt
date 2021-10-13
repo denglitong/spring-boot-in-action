@@ -1,0 +1,11 @@
+1.Spring的自动化配置
+
+spring-boot-autoconfigure JAR文件，其中包含了很多配置类。
+
+Spring的条件化配置，实现Condition接口即可。
+    class JdbcTemplateCondition implements Condition ...
+    @Conditional(JdbcTemplateCondition.class)
+    以上例子只有在JdbcTemplateCondition类的条件成立时才会加载配置Bean
+
+起步依赖帮助你专注于应用程序需要的功能类型，而非提供该功能的具体库和版本。
+自动配置将你从样板式的配置中解放了出来。
