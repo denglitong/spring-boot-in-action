@@ -1,5 +1,6 @@
 package com.denglitong.readinglist.controller;
 
+import com.denglitong.readinglist.config.AmazonProperties;
 import com.denglitong.readinglist.entity.BookEntity;
 import com.denglitong.readinglist.repository.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,21 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * @author litong.deng@foxmail.com
  * @date 2021/10/12
  */
-@Controller(value = "/")
+@Controller
+@RequestMapping("/readingList")
 public class ReadingListController {
 
     private ReadingListRepository readingListRepository;
+    private AmazonProperties amazonProperties;
 
     @Autowired
     public void setReadingListRepository(ReadingListRepository readingListRepository) {
         this.readingListRepository = readingListRepository;
+    }
+
+    @Autowired
+    public void setAmazonProperties(AmazonProperties amazonProperties) {
+        this.amazonProperties = amazonProperties;
     }
 
     @RequestMapping(value = "/{reader}", method = GET)
@@ -33,6 +41,7 @@ public class ReadingListController {
         List<BookEntity> readingList = readingListRepository.findByReader(reader);
         if (!CollectionUtils.isEmpty(readingList)) {
             model.addAttribute("books", readingList);
+            model.addAttribute("amazonId", amazonProperties.getAssociatedId());
         }
         return "readingList";
     }
@@ -41,6 +50,6 @@ public class ReadingListController {
     public String addToReadingList(@PathVariable("reader") String reader, BookEntity book) {
         book.setReader(reader);
         readingListRepository.save(book);
-        return "redirect:/{reader}";
+        return "redirect:/readingList/{reader}";
     }
 }

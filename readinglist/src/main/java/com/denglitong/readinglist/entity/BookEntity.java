@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import static javax.persistence.GenerationType.AUTO;
-
 /**
  * @author litong.deng@foxmail.com
  * @date 2021/10/12
@@ -15,7 +13,7 @@ import static javax.persistence.GenerationType.AUTO;
 public class BookEntity {
 
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String reader;
