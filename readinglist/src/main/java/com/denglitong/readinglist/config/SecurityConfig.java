@@ -49,8 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/").access("hasRole('READER')") // 要求登陆者有READER角色
-                .antMatchers("/readingList").access("hasRole('READER')")
-                .antMatchers("/***").permitAll()
+                .antMatchers("/actuator").access("hasRole('ADMIN')") // 要求actuator端点需要ADMIN权限
+                .antMatchers("/actuator/**").access("hasRole('ADMIN')") // 要求actuator端点需要ADMIN权限
+                .antMatchers("/**").permitAll()
                 .and()
                 .formLogin();
     }

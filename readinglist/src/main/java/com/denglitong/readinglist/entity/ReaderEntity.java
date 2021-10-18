@@ -56,6 +56,10 @@ public class ReaderEntity implements UserDetails {
     // 授予 READER 权限
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if ("denglitong".equalsIgnoreCase(username)) {
+            return Arrays.asList(new SimpleGrantedAuthority("READER"),
+                    new SimpleGrantedAuthority("ADMIN"));
+        }
         return Arrays.asList(new SimpleGrantedAuthority("READER"));
     }
 

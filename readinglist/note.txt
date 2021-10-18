@@ -23,3 +23,18 @@ Spring Boot会发现你的配置，随后降低自动配置的优先级，以你
 
 整个过程就算读取配置说明，在应用程序上下文里初始化Bean，将Bean注入依赖它们的其他Bean中。
 配置说明可以是XML、基于Java的配置、基于Groovy的配置或其他类型的配置。
+
+4. Actuator
+
+/autoconfig
+/configprops
+/beans
+/dump
+/env
+/env/{name}
+/info
+/mappings
+/metrics
+/metrics/{name}
+/shutdown
+/trace

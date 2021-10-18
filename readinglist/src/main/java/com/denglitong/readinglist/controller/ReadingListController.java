@@ -3,6 +3,8 @@ package com.denglitong.readinglist.controller;
 import com.denglitong.readinglist.config.AmazonProperties;
 import com.denglitong.readinglist.entity.BookEntity;
 import com.denglitong.readinglist.repository.ReadingListRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,15 @@ public class ReadingListController {
 
     private ReadingListRepository readingListRepository;
     private AmazonProperties amazonProperties;
+    /**
+     * 自定义 actuator metrics (Counter, Gauge, Timer, Distribution summary)
+     * https://github.com/TFdream/blog/issues/340
+     */
+    private final Counter bookSaveCounter;
+
+    public ReadingListController(MeterRegistry registry) {
+        bookSaveCounter = registry.counter("books.saved");
+    }
 
     @Autowired
     public void setReadingListRepository(ReadingListRepository readingListRepository) {
@@ -50,6 +61,8 @@ public class ReadingListController {
     public String addToReadingList(@PathVariable("reader") String reader, BookEntity book) {
         book.setReader(reader);
         readingListRepository.save(book);
+        bookSaveCounter.increment();
+        System.out.println("books.saved: " + bookSaveCounter.count());
         return "redirect:/readingList/{reader}";
     }
 }

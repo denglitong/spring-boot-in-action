@@ -27,9 +27,14 @@ public class ReaderDetailsService implements UserDetailsService {
 
     @PostConstruct
     public void mockInitUser() {
+        ReaderEntity admin = new ReaderEntity();
+        admin.setUsername("denglitong");
+        admin.setPassword("123456");
+        readerRepository.save(admin);
+
         ReaderEntity reader = new ReaderEntity();
-        reader.setUsername("denglitong");
-        reader.setPassword("123456");
+        reader.setUsername("user");
+        reader.setPassword("user");
         readerRepository.save(reader);
     }
 
