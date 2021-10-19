@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 /**
@@ -25,7 +24,7 @@ public class ReaderDetailsService implements UserDetailsService {
         this.readerRepository = readerRepository;
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void mockInitUser() {
         ReaderEntity admin = new ReaderEntity();
         admin.setUsername("denglitong");
@@ -36,7 +35,7 @@ public class ReaderDetailsService implements UserDetailsService {
         reader.setUsername("user");
         reader.setPassword("user");
         readerRepository.save(reader);
-    }
+    }*/
 
     @Override
     public UserDetails loadUserByUsername(String username)

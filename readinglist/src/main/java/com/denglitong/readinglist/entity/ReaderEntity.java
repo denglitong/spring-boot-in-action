@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,6 +15,7 @@ import java.util.Collection;
  * @date 2021/10/13
  */
 @Entity
+@Table(name = "Reader")
 public class ReaderEntity implements UserDetails {
 
     private static final long serialVersionUID = -926624239030718029L;

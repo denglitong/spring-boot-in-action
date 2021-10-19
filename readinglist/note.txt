@@ -38,3 +38,10 @@ Spring Boot会发现你的配置，随后降低自动配置的优先级，以你
 /metrics/{name}
 /shutdown
 /trace
+
+5. 部署SpringBoot
+
+- mvn spring-boot:run
+- java -jar xxx.jar
+- tomcat + war
+- java -jar xxx.war

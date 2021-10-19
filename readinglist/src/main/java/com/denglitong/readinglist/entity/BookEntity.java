@@ -1,15 +1,13 @@
 package com.denglitong.readinglist.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author litong.deng@foxmail.com
  * @date 2021/10/12
  */
 @Entity
+@Table(name = "Book")
 public class BookEntity {
 
     @Id
